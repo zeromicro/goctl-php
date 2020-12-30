@@ -15,7 +15,7 @@
 package template
 
 var IService = `<?php
-namespace {{.ParentPackage}}\Service;
+namespace {{.ParentPackage}};
 
 {{.Import}}
 use okhttp3.RequestBody;

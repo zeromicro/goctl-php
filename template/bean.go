@@ -15,7 +15,7 @@
 package template
 
 var Bean = `<?php
-namespace {{.ParentPackage}}\Bean;
+namespace {{.ParentPackage}};
 {{.Import}}
 public class {{.Name.ToCamel}} {
 	{{range $index,$item :=  .Members}}{{$item.Doc}}
@@ -26,7 +26,7 @@ public class {{.Name.ToCamel}} {
 	}
 
 	public void set{{$item.Name.ToCamel}}({{$item.TypeName}} {{$item.Name.Untitle}}) {
-		$this->{{$item.Name.Untitle}} = {{$item.Name.Untitle}};
+		$this->{{$item.Name.Untitle}} = ${{$item.Name.Untitle}};
 	}
 	{{end}}
 }`

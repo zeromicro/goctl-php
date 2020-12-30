@@ -15,7 +15,7 @@
 package template
 
 var Service = `<?php
-namespace {{.ParentPackage}}\service;
+namespace {{.ParentPackage}};
 
 {{.Import}}
 use com.alibaba.fastjson.JSON;
