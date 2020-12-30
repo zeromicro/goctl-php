@@ -30,12 +30,12 @@ func Php(ctx *cli.Context) error {
 		return err
 	}
 
-	var plugin generate.Plugin
+	var plugin Plugin
 	plugin.ParentPackage = pkg
 	err = json.Unmarshal(std, &plugin)
 	if err != nil {
 		return err
 	}
 
-	return generate.Do(plugin)
+	return Do(plugin)
 }

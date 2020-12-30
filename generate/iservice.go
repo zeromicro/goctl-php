@@ -47,7 +47,7 @@ type (
 )
 
 func generateIService(dir string, data IService) error {
-	filename := filepath.Join(dir, "IService.java")
+	filename := filepath.Join(dir, "IService.php")
 	base := filepath.Dir(filename)
 	err := util.MkdirIfNotExist(base)
 	if err != nil {

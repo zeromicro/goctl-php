@@ -24,7 +24,7 @@ import (
 )
 
 var (
-	version  = "20201217"
+	version  = "20201230"
 	commands = []*cli.Command{
 		{
 			Name:   "php",

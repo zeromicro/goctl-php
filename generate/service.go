@@ -22,7 +22,7 @@ import (
 )
 
 func generateService(dir string, data IService) error {
-	filename := filepath.Join(dir, "Service.java")
+	filename := filepath.Join(dir, "Service.php")
 	base := filepath.Dir(filename)
 	err := util.MkdirIfNotExist(base)
 	if err != nil {
