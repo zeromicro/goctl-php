@@ -27,14 +27,14 @@ use retrofit2.Retrofit;
 use retrofit2.converter.gson.GsonConverterFactory;
 
 public class Service {
-    private static final String MEDIA_TYPE_JSON = "application/json; charset=utf-8";
-    private static final String BASE_RUL = "http://localhost:8888/";// TODO replace to your host and delete this comment
+    private static final String $MEDIA_TYPE_JSON = "application/json; charset=utf-8";
+    private static final String $BASE_RUL = "http://localhost:8888/";// TODO replace to your host and delete this comment
     private static Service instance;
     private static IService service;
 
     private Service() {
         Retrofit retrofit = new Retrofit.Builder()
-                ->baseUrl(BASE_RUL)
+                ->baseUrl($BASE_RUL)
                 ->addConverterFactory(GsonConverterFactory.create())
                 ->build();
         service = retrofit->create(IService.class);
@@ -49,7 +49,7 @@ public class Service {
 
     private RequestBody buildJSONBody(Object obj) {
         String s = JSON.toJSONString(obj);
-        return RequestBody.create(s, MediaType.parse(MEDIA_TYPE_JSON));
+        return RequestBody.create(s, MediaType.parse($MEDIA_TYPE_JSON));
     }
 	{{range $index,$item := .Routes}}{{$item.Doc}}
     public void {{$item.MethodName}}({{if $item.HasRequest}}{{$item.RequestBeanName}} in, {{end}}Callback{{if $item.HasResponse}}<{{$item.ResponseBeanName}}>{{else}}<Void>{{end}} callback) {

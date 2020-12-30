@@ -44,10 +44,10 @@ func Do(in Plugin) error {
 	for _, item := range spec.Service.Routes {
 		if item.HasRequest || item.HasResponse {
 			if strings.TrimSpace(spec.Service.Import) != "" {
-				spec.Service.Import = fmt.Sprintf("import %s.bean.*;", spec.Service.ParentPackage) + "\n" + spec.Service.Import
+				spec.Service.Import = fmt.Sprintf("use %s\\Bean.*;", spec.Service.ParentPackage) + "\n" + spec.Service.Import
 				continue
 			}
-			spec.Service.Import = fmt.Sprintf("import %s.bean.*;", spec.Service.ParentPackage)
+			spec.Service.Import = fmt.Sprintf("use %s\\Bean.*;", spec.Service.ParentPackage)
 			break
 		}
 	}
