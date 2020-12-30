@@ -279,7 +279,7 @@ func getTypeName(parentPackage string, expr interface{}, inter bool) ([]*Bean, [
 		return getTypeName(parentPackage, v.Star, false)
 	case spec.MapType:
 		set.AddStr("import java.util.HashMap;")
-		beans, imports, typeName, err := toJavaMap(parentPackage, v)
+		beans, imports, typeName, err := toPhpMap(parentPackage, v)
 		if err != nil {
 			return nil, nil, "", err
 		}
@@ -288,7 +288,7 @@ func getTypeName(parentPackage string, expr interface{}, inter bool) ([]*Bean, [
 		return beans, set.KeysStr(), typeName, nil
 	case spec.ArrayType:
 		set.AddStr("import java.util.ArrayList;")
-		beans, imports, typeName, err := toJavaArray(parentPackage, v)
+		beans, imports, typeName, err := toPhpArray(parentPackage, v)
 		if err != nil {
 			return nil, nil, "", err
 		}
@@ -360,22 +360,22 @@ func unJsonMarshal(expr interface{}, inter bool) interface{} {
 	return expr
 }
 
-func toJavaArray(parentPackage string, a spec.ArrayType) ([]*Bean, []string, string, error) {
+func toPhpArray(parentPackage string, a spec.ArrayType) ([]*Bean, []string, string, error) {
 	beans, imports, typeName, err := getTypeName(parentPackage, a.ArrayType, false)
 	if err != nil {
-		return nil, nil, "", err
+		return nil, nil, typeName, err
 	}
 
-	return beans, imports, fmt.Sprintf("ArrayList<%s>", typeName), nil
+	return beans, imports, fmt.Sprintf("$%s=array()", parentPackage), nil
 }
 
-func toJavaMap(parentPackage string, m spec.MapType) ([]*Bean, []string, string, error) {
+func toPhpMap(parentPackage string, m spec.MapType) ([]*Bean, []string, string, error) {
 	beans, imports, typeName, err := getTypeName(parentPackage, m.Value, false)
 	if err != nil {
-		return nil, nil, "", err
+		return nil, nil, typeName, err
 	}
 
-	return beans, imports, fmt.Sprintf("HashMap<String,%s>", typeName), nil
+	return beans, imports, fmt.Sprintf("$%s=array()", parentPackage), nil
 }
 
 func toPhpType(parentPackage, goType string) (string, string) {
