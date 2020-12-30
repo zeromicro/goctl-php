@@ -14,12 +14,13 @@
 
 package template
 
-var IService = `package {{.ParentPackage}}.service;
+var IService = `<?php
+namespace {{.ParentPackage}}\Service;
 
 {{.Import}}
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.http.*;
+use okhttp3.RequestBody;
+use retrofit2.Call;
+use retrofit2.http.*;
 
 public interface IService {
     {{range $index,$item := .Routes}}{{$item.Doc}}

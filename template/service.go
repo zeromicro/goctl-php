@@ -14,16 +14,17 @@
 
 package template
 
-var Service = `package {{.ParentPackage}}.service;
+var Service = `<?php
+namespace {{.ParentPackage}}\service;
 
 {{.Import}}
-import com.alibaba.fastjson.JSON;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+use com.alibaba.fastjson.JSON;
+use okhttp3.MediaType;
+use okhttp3.RequestBody;
+use retrofit2.Call;
+use retrofit2.Callback;
+use retrofit2.Retrofit;
+use retrofit2.converter.gson.GsonConverterFactory;
 
 public class Service {
     private static final String MEDIA_TYPE_JSON = "application/json; charset=utf-8";
@@ -33,10 +34,10 @@ public class Service {
 
     private Service() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_RUL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        service = retrofit.create(IService.class);
+                ->baseUrl(BASE_RUL)
+                ->addConverterFactory(GsonConverterFactory.create())
+                ->build();
+        service = retrofit->create(IService.class);
     }
 
     public static Service getInstance() {
