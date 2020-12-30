@@ -363,6 +363,7 @@ func unJsonMarshal(expr interface{}, inter bool) interface{} {
 func toPhpArray(parentPackage string, a spec.ArrayType) ([]*Bean, []string, string, error) {
 	beans, imports, typeName, err := getTypeName(parentPackage, a.ArrayType, false)
 	if err != nil {
+		typeName = ""
 		return nil, nil, typeName, err
 	}
 
@@ -372,6 +373,7 @@ func toPhpArray(parentPackage string, a spec.ArrayType) ([]*Bean, []string, stri
 func toPhpMap(parentPackage string, m spec.MapType) ([]*Bean, []string, string, error) {
 	beans, imports, typeName, err := getTypeName(parentPackage, m.Value, false)
 	if err != nil {
+		typeName = ""
 		return nil, nil, typeName, err
 	}
 
