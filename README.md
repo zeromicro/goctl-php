@@ -64,7 +64,7 @@ goctl-php是一款基于goctl的插件，用于生成 php 调用端（服务端�
     ```
     >说明： 其中`goctl-php`为可执行的二进制文件，`"php -package Tal"`为goctl-plugin自定义的参数，这里需要用引号`""`引起来。
 
-我们来看一下生成java代码后的目录结构
+我们来看一下生成php代码后的目录结构
 ```text
 ├── bean
 │   ├── LoginReq.php
@@ -78,8 +78,8 @@ goctl-php是一款基于goctl的插件，用于生成 php 调用端（服务端�
 > [点击这里]() 查看php示例源码
 
 composer依赖
-```json
-
+```txt
+//TODO
 ```
 
 > 本插件是基于***来实现http请求，因此会用到一些php依赖，composer包管理形式自行处理。
