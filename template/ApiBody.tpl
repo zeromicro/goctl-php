@@ -1,5 +1,7 @@
 <?php
 
+namespace {{.Namespace}};
+
 
 /**
  * 提供 go-zero api 之外自定义 http 内容体的方式。

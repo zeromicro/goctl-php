@@ -1,5 +1,7 @@
 <?php
 
+namespace {{.Namespace}};
+
 class ApiBaseClient
 {
     private $host;

@@ -1,5 +1,7 @@
 <?php
 
+namespace {{.Namespace}};
+
 class ApiException extends \Exception
 {
     private $responseContent;
