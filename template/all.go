@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"text/template"
+
+	"github.com/zeromicro/goctl-php/util"
 )
 
 //go:embed ApiBaseClient.tpl
@@ -16,6 +18,12 @@ var ApiClient string
 
 //go:embed ApiException.tpl
 var ApiException string
+
+//go:embed ApiMessage.tpl
+var ApiMessage string
+
+//go:embed ApiSubMessage.tpl
+var ApiSubMessage string
 
 //go:embed ApiBody.tpl
 var ApiBody string
@@ -46,8 +54,24 @@ type PhpApiClientTemplateData struct {
 	Routes     []PhpApiClientRouteTemplateData
 }
 
+type PhpApiMessageTemplateData struct {
+	PhpTemplateData
+	MessageName string
+	Properties  map[string]string
+}
+
+type PhpApiSubMessageTemplateData struct {
+	PhpTemplateData
+	MessageName string
+	Properties  map[string]string
+}
+
 func WriteFile[T any](dir string, name string, tpl string, data T) error {
-	tmpl, err := template.New(name).Parse(tpl)
+	tmpl, err := template.New(name).
+		Funcs(template.FuncMap{
+			"CamelCase": util.CamelCase,
+		}).
+		Parse(tpl)
 	if err != nil {
 		return err
 	}
