@@ -1,6 +1,6 @@
 # goctl-php
 
-![go-zero](https://img.shields.io/badge/Github-go--zero-brightgreen?link=https://github.com/tal-tech/go-zero&logo=github)
+![go-zero](https://img.shields.io/badge/Github-go--zero-brightgreen?link=https://github.com/zeromicro/go-zero&logo=github)
 ![License](https://img.shields.io/badge/License-MIT-blue?link=https://github.com/zeromicro/goctl-android/blob/main/LICENSE)
 ![Go](https://github.com/zeromicro/goctl-android/workflows/Go/badge.svg)
 
@@ -60,9 +60,9 @@ goctl-php是一款基于goctl的插件，用于生成 php 调用端（服务端�
 * 生成php代码
     
     ```shell script
-    $ goctl api plugin -plugin goctl-php="php -package Tal" -api user.api -dir .
+    $ goctl api plugin -plugin goctl-php="php -namespace Tal" -api user.api -dir .
     ```
-    >说明： 其中`goctl-php`为可执行的二进制文件，`"php -package Tal"`为goctl-plugin自定义的参数，这里需要用引号`""`引起来。
+    >说明： 其中`goctl-php`为可执行的二进制文件，`"php -namespace Tal"`为goctl-plugin自定义的参数，这里需要用引号`""`引起来。
 
 我们来看一下生成php代码后的目录结构
 ```text
@@ -77,12 +77,12 @@ goctl-php是一款基于goctl的插件，用于生成 php 调用端（服务端�
 
 > [点击这里]() 查看php示例源码
 
-composer依赖
-```txt
-//TODO
-```
+> 本插件是基于 php 的 curl 这个 c 扩展来实现http请求，php.ini 文件需要开启此扩展。
 
-> 本插件是基于***来实现http请求，因此会用到一些php依赖，composer包管理形式自行处理。
+```ini
+; 需要开启这个 c 扩展。
+extension=curl
+```
 
 * 编写测试
 ```php

@@ -15,27 +15,18 @@
 package action
 
 import (
-	"encoding/json"
-	"io/ioutil"
-	"os"
-
 	"github.com/urfave/cli/v2"
+	"github.com/zeromicro/go-zero/tools/goctl/plugin"
 	"github.com/zeromicro/goctl-php/generate"
 )
 
 func Php(ctx *cli.Context) error {
-	pkg := ctx.String("package")
-	std, err := ioutil.ReadAll(os.Stdin)
+	ns := ctx.String("namespace")
+
+	plugin, err := plugin.NewPlugin()
 	if err != nil {
 		return err
 	}
 
-	var plugin generate.Plugin
-	plugin.ParentPackage = pkg
-	err = json.Unmarshal(std, &plugin)
-	if err != nil {
-		return err
-	}
-
-	return generate.Do(plugin)
+	return generate.PhpCommand(plugin, ns)
 }
