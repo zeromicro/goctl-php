@@ -21,7 +21,7 @@ class {{.ClientName}}Client extends ApiBaseClient
         $response = new {{$r.ResponseType}}();
         {{if $r.ResponseHeaders}}
         $response->getHeader()
-            {{range $n, $k := $r.ResponseHeaders}}->set{{$n}}($result['body']['{{$k}}'])
+            {{range $n, $k := $r.ResponseHeaders}}->set{{$n}}($result['headers']['{{$k}}'])
             {{end}};
         {{end}}
         {{if $r.ResponseBody}}
