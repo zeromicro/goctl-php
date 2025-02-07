@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/samber/lo"
 	"github.com/zeromicro/go-zero/tools/goctl/api/spec"
 	"github.com/zeromicro/goctl-php/template"
-	"github.com/zeromicro/goctl-php/util"
 )
 
 func genClient(dir string, ns string, api *spec.ApiSpec) error {
@@ -27,7 +27,7 @@ func genClient(dir string, ns string, api *spec.ApiSpec) error {
 }
 
 func writeClient(dir string, ns string, api *spec.ApiSpec) error {
-	name := util.CamelCase(api.Service.Name, true)
+	name := lo.PascalCase(api.Service.Name)
 
 	data := template.PhpApiClientTemplateData{
 		PhpTemplateData: template.PhpTemplateData{Namespace: ns},
@@ -44,12 +44,12 @@ func writeClient(dir string, ns string, api *spec.ApiSpec) error {
 				HttpMethod:   strings.ToLower(r.Method),
 				UrlPath:      r.Path,
 				Prefix:       prefix,
-				ActionPrefix: util.CamelCase(prefix, true),
-				ActionName:   util.CamelCase(r.Path, true),
+				ActionPrefix: lo.PascalCase(prefix),
+				ActionName:   lo.PascalCase(r.Path),
 			}
 
 			if r.RequestType != nil {
-				requestType := util.CamelCase(r.RequestType.Name(), true)
+				requestType := lo.PascalCase(r.RequestType.Name())
 				route.RequestType = &requestType
 				route.RequestHasPathParams = hasTagMembers(r.RequestType, pathTagKey)
 				route.RequestHasQueryString = hasTagMembers(r.RequestType, formTagKey)
@@ -58,7 +58,7 @@ func writeClient(dir string, ns string, api *spec.ApiSpec) error {
 			}
 
 			if r.ResponseType != nil {
-				responseType := util.CamelCase(r.ResponseType.Name(), true)
+				responseType := lo.PascalCase(r.ResponseType.Name())
 				route.ResponseType = &responseType
 
 				definedType, ok := r.ResponseType.(spec.DefineStruct)
@@ -101,7 +101,7 @@ func enumResponseSubMessageKey(definedType *spec.DefineStruct, tag string) (map[
 		} else {
 			k = m.Name
 		}
-		result[util.CamelCase(m.Name, true)] = k
+		result[lo.PascalCase(m.Name)] = k
 	}
 	return result, nil
 }

@@ -3,9 +3,9 @@ package generate
 import (
 	"fmt"
 
+	"github.com/samber/lo"
 	"github.com/zeromicro/go-zero/tools/goctl/api/spec"
 	"github.com/zeromicro/goctl-php/template"
-	"github.com/zeromicro/goctl-php/util"
 )
 
 const (
@@ -30,9 +30,9 @@ func tagToSubName(tagKey string) string {
 	return suffix
 }
 
-func getMessageName(tn string, tagKey string, isPascal bool) string {
+func getMessageName(tn string, tagKey string) string {
 	suffix := tagToSubName(tagKey)
-	return util.CamelCase(fmt.Sprintf("%s-%s", tn, suffix), isPascal)
+	return lo.PascalCase(fmt.Sprintf("%s-%s", tn, suffix))
 }
 
 func hasTagMembers(t spec.Type, tagKey string) bool {
@@ -54,7 +54,7 @@ func genMessages(dir string, ns string, api *spec.ApiSpec) error {
 
 		data := template.PhpApiMessageTemplateData{
 			PhpTemplateData: template.PhpTemplateData{Namespace: ns},
-			MessageName:     util.CamelCase(tn, true),
+			MessageName:     lo.PascalCase(tn),
 			Properties:      map[string]string{},
 		}
 
@@ -65,7 +65,7 @@ func genMessages(dir string, ns string, api *spec.ApiSpec) error {
 			if len(ms) <= 0 {
 				continue
 			}
-			cn := getMessageName(tn, tagKey, true)
+			cn := getMessageName(tn, tagKey)
 			data.Properties[tagToSubName(tagKey)] = cn
 
 			// 写入
@@ -92,7 +92,7 @@ func writeSubMessage(dir string, ns string, cn string, ms []spec.Member) error {
 	// 字段
 	for _, m := range ms {
 		tags := m.Tags()
-		n := util.CamelCase(m.Name, false)
+		n := lo.CamelCase(m.Name)
 		k := ""
 		if len(tags) > 0 {
 			k = tags[0].Name
