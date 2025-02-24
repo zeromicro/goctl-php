@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"text/template"
 
-	"github.com/zeromicro/goctl-php/util"
+	"github.com/samber/lo"
 )
 
 //go:embed ApiBaseClient.tpl
@@ -69,7 +69,8 @@ type PhpApiSubMessageTemplateData struct {
 func WriteFile[T any](dir string, name string, tpl string, data T) error {
 	tmpl, err := template.New(name).
 		Funcs(template.FuncMap{
-			"CamelCase": util.CamelCase,
+			"CamelCase":  lo.CamelCase,
+			"PascalCase": lo.PascalCase,
 		}).
 		Parse(tpl)
 	if err != nil {

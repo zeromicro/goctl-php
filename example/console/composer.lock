@@ -1,0 +1,47 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "afff7c1cc312e7898872df2b9f6cacf0",
+    "packages": [
+        {
+            "name": "demo/genlib",
+            "version": "0.1.0",
+            "dist": {
+                "type": "path",
+                "url": "../genlib",
+                "reference": "d2f3ac9a9d7bb447807bd9e947e485c76e6bbd5c"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Demo\\GenLib\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "chaosannals",
+                    "email": "chaosannals@outlook.com"
+                }
+            ],
+            "description": "yet go-zero php gen demo.",
+            "transport-options": {
+                "relative": true
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}

@@ -6,10 +6,10 @@ toolchain go1.23.0
 
 require (
 	github.com/gookit/color v1.5.4
+	github.com/samber/lo v1.49.1
 	github.com/urfave/cli/v2 v2.3.0
 	github.com/zeromicro/go-zero v1.8.0
 	github.com/zeromicro/go-zero/tools/goctl v1.7.6
-	golang.org/x/text v0.21.0
 )
 
 require (
@@ -29,4 +29,5 @@ require (
 	go.opentelemetry.io/otel/trace v1.24.0 // indirect
 	go.uber.org/automaxprocs v1.6.0 // indirect
 	golang.org/x/sys v0.29.0 // indirect
+	golang.org/x/text v0.21.0 // indirect
 )

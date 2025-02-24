@@ -15,6 +15,6 @@ class {{.MessageName}}
     }
 
     {{range $k, $v := .Properties}}
-    public function get{{CamelCase $k true}}() { return $this->{{$k}}; }
+    public function get{{PascalCase $k}}() { return $this->{{$k}}; }
     {{end}}
 }

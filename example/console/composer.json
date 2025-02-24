@@ -1,0 +1,29 @@
+{
+    "name": "demo/console",
+    "description": "yet go-zero php gen a console demo.",
+    "type": "project",
+    "license": "MIT",
+    "scripts": {
+        "start": "php ./src/main.php"
+    },
+    "autoload": {
+        "psr-4": {
+            "Demo\\Console\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "chaosannals",
+            "email": "chaosannals@outlook.com"
+        }
+    ],
+    "require": {
+        "demo/genlib": "^0.1.0"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../genlib"
+        }
+    ]
+}
