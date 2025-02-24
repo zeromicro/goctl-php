@@ -1,0 +1,19 @@
+{
+    "name": "demo/genlib",
+    "description": "yet go-zero php gen demo.",
+    "type": "library",
+    "license": "MIT",
+    "version": "0.1.0",
+    "autoload": {
+        "psr-4": {
+            "Demo\\GenLib\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "chaosannals",
+            "email": "chaosannals@outlook.com"
+        }
+    ],
+    "require": {}
+}
